@@ -1,0 +1,17 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Launch localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://192.168.1.102:3002",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "trace":true,
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "*"
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>today_</title>
+        <link rel="stylesheet" type="text/css" href="./dist/css/style.css">
+    </head>
+    <body>
+        <style>[v-cloak]{display: none}</style>
+        <div id="app" v-cloak>
+            <header class="header">
+                <div class="input-form">
+                    <div class="app-title">today<span class="anim-blink">_</span> <transition name="bounce"><span class="badge" v-if="totalTodo > finTodo"><span class="text">{{totalTodo - finTodo}}</span></span></transition></div>
+                    <input id="input-form-input" v-model="inputVal" @focus="resetEdit" @keydown.enter="keyCheck" @keyup.enter="enterAdd" placeholder="今日は何しようか？">
+                    <button @click="addTodo">＋</button>
+                </div>
+            </header>
+            <div class="app-list">
+                <ul class="app-list-inr">
+                    <transition-group name="fade">
+                        <todo-col
+                            v-for="(todo, index) in orderbyTodos"
+                            :key="todo.id"
+                            :todo="todo"
+                            :index="index"
+                            :edit="todoEdit"
+                            :check="todoCheck"
+                            @remove="todos.splice(index, 1)"
+                            draggable="true"
+                        ></todo-col>
+                    </transition-group>
+                </ul>
+            </div>
+        </div>
+        <script src="./dist/js/main.js"></script>
+    </body>
+</html>
+
