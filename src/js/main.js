@@ -75,37 +75,8 @@ const today = new Vue({
     orderbyTodos() {
       return _.orderBy(this.todos, 'index');
     },
-  },
-  watch: {
-    todos: {
-      handler() {
-        const input = 'input-form-input';
-        let fincount = 0;
-        const placeholder = [
-          '今日は何しようか？',
-        ];
-        let findEditFlag = _.findIndex(today.todos, ['edit', true]); // else -1
-        if (today.todos.length > 0) {
-          _.each(today.todos, (todo) => {
-            if (todo.check === true) {
-              fincount += 1;
-            }
-          });
-          if (today.todos.length > 1 && findEditFlag < 0) {
-            today.badgeAnim('.badge');
-          }
-          today.finTodo = fincount;
-          today.totalTodo = today.todos.length;
-          document.getElementById(input).setAttribute('placeholder', placeholder[0]); // [today.totalTodo]
-          document.title = `(${today.finTodo}/${today.totalTodo}) today_`;
-        } else {
-          today.finTodo = fincount;
-          today.totalTodo = today.todos.length;
-          document.getElementById(input).setAttribute('placeholder', placeholder[0]);
-          document.title = 'today_';
-        }
-      },
-      deep: true,
+    todocheck() {
+      return this.totalTodo + this.finTodo;
     },
   },
   methods: {
@@ -128,8 +99,10 @@ const today = new Vue({
       });
       if (this.todos[i].check === false) {
         Vue.set(this.todos[i], 'check', true);
+        this.badgeAnim('.badge');
       } else {
         Vue.set(this.todos[i], 'check', false);
+        this.badgeAnim('.badge');
       }
     },
     todoEdit(i) {
@@ -166,7 +139,37 @@ const today = new Vue({
       TweenMax.to(target, 0.2, { scale: 1.0 });
     },
   },
-
+  watch: {
+    todocheck() {
+      this.badgeAnim('.badge');
+    },
+    todos: {
+      handler() {
+        const input = 'input-form-input';
+        let fincount = 0;
+        const placeholder = [
+          '今日は何しようか？',
+        ];
+        if (today.todos.length > 0) {
+          _.each(today.todos, (todo) => {
+            if (todo.check === true) {
+              fincount += 1;
+            }
+          });
+          today.finTodo = fincount;
+          today.totalTodo = today.todos.length;
+          document.getElementById(input).setAttribute('placeholder', placeholder[0]); // [today.totalTodo]
+          document.title = `(${today.finTodo}/${today.totalTodo}) today_`;
+        } else {
+          today.finTodo = fincount;
+          today.totalTodo = today.todos.length;
+          document.getElementById(input).setAttribute('placeholder', placeholder[0]);
+          document.title = 'today_';
+        }
+      },
+      deep: true,
+    },
+  },
 });
 
 // // title sync
