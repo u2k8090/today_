@@ -33,23 +33,11 @@ const todoCol = {
       </li>',
 };
 
-// Vue.component('todo-col', {
-//   props: ['todo'],
-//   template: '\
-//       <li class="app-list-col" :class="[{check: todo.check}]"  >\
-//         <span class="checkBox" @click="$emit(\'check\')"></span>\
-//         <p class="text" v-if="!todo.edit" @click="$emit(\'edit\')">{{todo.text}}</p>\
-//         <input v-bind:id="\'todo-col-\' + todo.id" v-if="todo.edit" v-model="todo.text" @keyup.enter="$emit(\'edit\')">\
-//         <button @click="$emit(\'remove\')" >×</button>\
-//       </li>',
-// });
-
 const today = new Vue({
   el: '#app',
   components: {
     'todo-col': todoCol,
   },
-  //   components: ['list-col'],
   data: {
     inputVal: '',
     totalTodo: 0,
@@ -75,7 +63,7 @@ const today = new Vue({
     orderbyTodos() {
       return _.orderBy(this.todos, 'index');
     },
-    todocheck() {
+    todoTotal() {
       return this.totalTodo + this.finTodo;
     },
   },
@@ -140,7 +128,7 @@ const today = new Vue({
     },
   },
   watch: {
-    todocheck() {
+    todoTotals() {
       this.badgeAnim('.badge');
     },
     todos: {
@@ -171,33 +159,3 @@ const today = new Vue({
     },
   },
 });
-
-// // title sync
-// today.$watch('todos', () => {
-//   const input = 'input-form-input';
-//   let fincount = 0;
-//   const placeholder = [
-//     '今日は何しようか？',
-//   ];
-//   let findEditFlag = _.findIndex(today.todos, ['edit', true]); // else -1
-//   if (today.todos.length > 0) {
-//     _.each(today.todos, (todo) => {
-//       if (todo.check === true) {
-//         fincount += 1;
-//       }
-//     });
-//     if (today.todos.length > 1 && findEditFlag < 0) {
-//       today.badgeAnim('.badge');
-//     }
-//     today.finTodo = fincount;
-//     today.totalTodo = today.todos.length;
-//     document.getElementById(input).setAttribute('placeholder', placeholder[0]); // [today.totalTodo]
-//     document.title = `(${today.finTodo}/${today.totalTodo}) today_`;
-//   } else {
-//     today.finTodo = fincount;
-//     today.totalTodo = today.todos.length;
-//     document.getElementById(input).setAttribute('placeholder', placeholder[0]);
-//     document.title = 'today_';
-//   }
-// }, { deep: true }); // dee: true でネストされたDOMまで監視
-
