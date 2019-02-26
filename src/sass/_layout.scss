@@ -1,264 +1,272 @@
 @keyframes gradation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 @keyframes anim_blink {
-    0%{opacity:0;}
-    1%{opacity:1;}
-    50%{opacity:1;}
-    51%{opacity:0;}
-    100%{opacity:0;}
+  0%{opacity:0;}
+  1%{opacity:1;}
+  50%{opacity:1;}
+  51%{opacity:0;}
+  100%{opacity:0;}
 }
 
 @keyframes bounce-in {
-    0% {
-      transform: scale(0);
-    }
-    50% {
-      transform: scale(1.5);
-    }
-    100% {
-      transform: scale(1);
-    }
+  0% {
+    transform: scale(0);
   }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .anim-blink {
-    animation: anim_blink 1s infinite ;
+  animation: anim_blink 1s infinite ;
 }
 
 
 #app {
-    color: #4A4A4A;
-    background-color: #eee;
-    min-height: calc(100vh - 90px);
-    @include mq(PC){
-        min-height: calc(100vh - 131px);
-    }
-    .header {
-        position: fixed;
-        top:0;
-        left: 0;
-        width: 100%;
-        padding: 20px;
-        background: linear-gradient(135deg, #B588F3,#00FFC6,#B588F3);
-        background-size: 200% 200%;
-        animation: gradation 20s ease-in 5s infinite alternate-reverse;
-        @include mq(PC){
-            padding: 30px;
-        }
+  color: #4A4A4A;
+  background-color: #eee;
+  min-height: calc(100vh - 90px);
+  @include mq(PC){
+  min-height: calc(100vh - 144px);
+  }
+  .header {
+      position: fixed;
+      top:0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(135deg, #B588F3,#00FFC6,#B588F3);
+      background-size: 200% 200%;
+      animation: gradation 20s ease-in 5s infinite alternate-reverse;
+      z-index: 9999;
+      @include mq(PC){
+          padding: 30px;
+      }
 
 
-        .input-form {
-            display: flex;
-            .app-title {
-                font-size: 3rem;
-                font-weight: bold;
-                color: #fff;
-                margin-right: 20px;
-                position: relative;
-                @include mq(PC){
-                    margin-right: 40px;
-                    font-size: 4.3rem;
-                }
-                .badge {
-                    right: -1px;
-                    top: 7px;
-                    font-size: 1.2rem;
-                    width: 20px;
-                    height: 20px;
-                    position: absolute;
-                    line-height: 1;
-                    background-color: red;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    @include mq(PC){
-                        right: -3px;
-                        top: 5px;
-                        font-size: 1.5rem;
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
+      .input-form {
+          display: flex;
+          .app-title {
+              font-size: 3rem;
+              font-weight: bold;
+              color: #fff;
+              margin-right: 20px;
+              position: relative;
+              font-weight: 700;
+              @include mq(PC){
+                  margin-right: 40px;
+                  font-size: 4.3rem;
+                  width: 147px;
+              }
+              .badge {
+                  right: -1px;
+                  top: 7px;
+                  font-size: 1.2rem;
+                  width: 20px;
+                  height: 20px;
+                  position: absolute;
+                  line-height: 1;
+                  background-color: red;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 50%;
+                  @include mq(PC){
+                      right: 0px;
+                      top: 5px;
+                      font-size: 1.5rem;
+                      width: 30px;
+                      height: 30px;
+                  }
+              }
 
-            }
-            input {
-                background-color: #fff;
-                color: #4A4A4A;
-                border: 0;
-                width: 100%;
-                padding: 5px 10px;
-                font-size: 3rem;
-                line-height: 1;
-                outline: 0;
-                font-family: $body-font;
-                @include mq(PC){
-                    padding: 10px 20px;
-                    font-size: 4.3rem;
-                }
-            }
-            :placeholder-shown {
-                color: #ccc;
-            }
-            ::-webkit-input-placeholder {
-                color: #ccc;
-            }
-            button {
-                background-color: #fff;
-                font-size: 3rem;
-                border: 0;
-                color: #fff;
-                background: rgb(2, 243, 223);
-                padding: 0 20px;
-                line-height: 1;
-                font-weight: bold;
-                outline: 0;
-                @include mq(PC){
-                    font-size: 4.3rem;
-                }
-            }
-        }
-    }
-    .app-list {
-        .app-list-inr {
-            margin-top: 88px;
-            @include mq(PC){
-                margin-top: 131px;
-            }
-        }
-        .app-list-col {
-            background: #FFFFFF;
-            box-shadow: inset 0 1px 0 0 rgb(210, 248, 245), inset 0 -4px 0 0 rgba(2, 243, 223, 0.1);
-            font-size: 2.3rem;
-            padding: 10px 30px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            transition: all .05s ease;
-            @include mq(PC){
-                font-size: 3.3rem;
-                padding: 20px 30px;
-            }
-            &.check {
-                opacity: 0.5;
-                box-shadow: none;
-                .checkBox {
-                    background-color: $primary-color;
-                    animation: bounce-in .2s;
-                }
-                .checkBox:after {
-                    display: block;
-                    content: '';
-                    position: absolute;
-                    top: 0.28em;
-                    left: 0.28em;
-                    width: 18px;
-                    height: 10px;
-                    border-left: 3px solid $light-color;
-                    border-bottom: 3px solid $light-color;
-                    -webkit-transform: rotate(-45deg);
-                    transform: rotate(-45deg);
-                    @include mq(PC){
-                        top: 0.3em;
-                        left: 0.3em;
-                        width: 20px;
-                        height: 12px;
-                        border-left: 3px solid $light-color;
-                        border-bottom: 3px solid $light-color;
-                    }
-                }
-            }
-            input {
-                background-color: rgb(248, 248, 248);
-                color: #4A4A4A;
-                border: 0;
-                font-size: 2.3rem;
-                // line-height: 1;
-                width: calc(100% - 100px);
-                outline: 0;
-                padding: 0;
-                font-family: $body-font;
-                @include mq(PC){
-                    padding: 0px;
-                    font-size: 3.3rem;
-                    width: calc(100% - 100px);
-                }
-            }
-            :placeholder-shown {
-                color: #ccc;
-            }
-            ::-webkit-input-placeholder {
-                color: #ccc;
-            }
-            .text {
-                width: calc(100% - 100px);
-                cursor: text;
-                @include mq(PC){
-                    padding: 0px;
-                    font-size: 3.3rem;
-                    width: calc(100% - 100px);
-                }
-            }
-            .checkBox {
-                width: 30px;
-                height: 30px;
-                display: block;
-                border-radius: 50%;
-                display: block;
-                border: 1px solid rgba($primary-color,0.5);
-                background: #fff;
-                position: relative;
-                margin-right: 10px;
-                cursor: pointer;
-                @include mq(PC){
-                    display: block;
-                    width: 40px;
-                    height: 40px;
-                    margin-right: 20px;
-                }
-            }
-            button {
-                font-size: 4.3rem;
-                border: 0;
-                font-weight: normal;
-                line-height: 1;
-                opacity: 0;
-                transition: all .2s ease;
-                outline: 0;
-                cursor: pointer;
-                position: absolute;
-                right: 10px;
-                top: 0;
-                bottom: 0;
-                margin: auto;
-                color: #eee;
-                @include mq(PC){
-                    font-size: 5.5rem;
-                }
-            }
-            &:hover {
-                button {
-                    opacity: 1;
-                }
-            }
+          }
+          input {
+              background-color: #fff;
+              color: #4A4A4A;
+              border: 0;
+              width: 80%;
+              padding: 5px 10px;
+              font-size: 3rem;
+              line-height: 1;
+              outline: 0;
+              font-family: $body-font;
+              @include mq(PC){
+                  padding: 10px 20px;
+                  font-size: 4.3rem;
+                  width: calc(100% - 300px);
+              }
+          }
+          :placeholder-shown {
+              color: #ccc;
+          }
+          ::-webkit-input-placeholder {
+              color: #ccc;
+          }
+          button {
+              background-color: #fff;
+              font-size: 3rem;
+              border: 0;
+              color: #fff;
+              background: rgb(2, 243, 223);
+              padding: 0 20px;
+              line-height: 1;
+              font-weight: bold;
+              outline: 0;
+              @include mq(PC){
+                  font-size: 4.3rem;
+                  cursor: pointer;
+              }
+          }
+      }
+  }
+  .app-list {
+      .app-list-inr {
+          margin-top: 88px;
+          @include mq(PC){
+              margin-top: 144px;
+          }
+      }
+      .app-list-col {
+          background: #FFFFFF;
+          box-shadow: inset 0 1px 0 0 rgb(210, 248, 245), inset 0 -4px 0 0 rgba(2, 243, 223, 0.1);
+          font-size: 2.3rem;
+          padding: 10px 30px;
+          display: flex;
+          align-items: center;
+          position: relative;
+          transition: all .05s ease;
+          @include mq(PC){
+              font-size: 3.3rem;
+              padding: 20px 30px;
+          }
+          &.sortable-ghost {
+            opacity: 0.25;
+          }
+          &.check {
+              opacity: 0.5;
+              box-shadow: none;
+              .checkBox {
+                  background-color: $primary-color;
+                  animation: bounce-in .2s;
+              }
+              .checkBox:after {
+                  display: block;
+                  content: '';
+                  position: absolute;
+                  top: 0.28em;
+                  left: 0.28em;
+                  width: 18px;
+                  height: 10px;
+                  border-left: 3px solid $light-color;
+                  border-bottom: 3px solid $light-color;
+                  -webkit-transform: rotate(-45deg);
+                  transform: rotate(-45deg);
+                  @include mq(PC){
+                      top: 0.3em;
+                      left: 0.3em;
+                      width: 20px;
+                      height: 12px;
+                      border-left: 3px solid $light-color;
+                      border-bottom: 3px solid $light-color;
+                  }
+              }
+          }
+          input {
+              background-color: rgb(248, 248, 248);
+              color: #4A4A4A;
+              border: 0;
+              font-size: 2.3rem;
+              // line-height: 1;
+              width: calc(100% - 100px);
+              outline: 0;
+              padding: 0;
+              font-family: $body-font;
+              @include mq(PC){
+                  padding: 0px;
+                  font-size: 3.3rem;
+                  width: calc(100% - 100px);
+              }
+          }
+          :placeholder-shown {
+              color: #ccc;
+          }
+          ::-webkit-input-placeholder {
+              color: #ccc;
+          }
+          .text {
+              width: calc(100% - 100px);
+              cursor: text;
+              @include mq(PC){
+                  padding: 0px;
+                  font-size: 3.3rem;
+                  width: calc(100% - 100px);
+              }
+          }
+          .checkBox {
+              width: 30px;
+              height: 30px;
+              display: block;
+              border-radius: 50%;
+              display: block;
+              border: 1px solid rgba($primary-color,0.5);
+              background: #fff;
+              position: relative;
+              margin-right: 10px;
+              cursor: pointer;
+              @include mq(PC){
+                  display: block;
+                  width: 40px;
+                  height: 40px;
+                  margin-right: 20px;
+              }
+          }
+          button {
+              font-size: 4.3rem;
+              border: 0;
+              font-weight: normal;
+              line-height: 1;
+              opacity: 0;
+              transition: all .2s ease;
+              outline: 0;
+              cursor: pointer;
+              position: absolute;
+              right: 10px;
+              // top:0;
+              // bottom: 0;
+              margin: auto;
+              color: #eee;
+              @include mq(PC){
+                  font-size: 5.5rem;
+              }
+          }
+          &:hover {
+              button {
+                  opacity: 1;
+              }
+          }
 
-        }
-    }
+      }
+  }
 }
 
 .fade-enter-active, .fade-leave-active {
-    transition: all .15s;
+  transition: all .15s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-    transform: translateY(50px);
+  opacity: 0;
+  transform: translateY(50px);
 }
 .bounce-enter-active {
-    animation: bounce-in .2s;
+  animation: bounce-in .2s;
 }
 .bounce-leave-active {
-    animation: bounce-in .2s reverse;
+  animation: bounce-in .2s reverse;
 }
 

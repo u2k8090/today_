@@ -5,7 +5,7 @@
             "name": "Launch localhost",
             "type": "chrome",
             "request": "launch",
-            "url": "http://192.168.1.102:3002",
+            "url": "http://192.168.1.101:3000",
             "webRoot": "${workspaceRoot}",
             "sourceMaps": true,
             "trace":true,

@@ -5,9 +5,10 @@ import path from 'path';
 import _ from 'lodash';
 import glob from 'glob';
 import chalk from 'chalk';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackNotifierPlugin from 'webpack-notifier';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { config } from '../package.json';
 
 let JSPATH = config.js;
@@ -22,9 +23,8 @@ const entries = _.fromPairs(
 let wordpress = config.wordpress;
 
 export default {
-    // mode: 'development',
+    mode: 'development',
     // ビルド対象
-    watch: true,
     entry: entries,
     // 出力設定
     output: {
@@ -42,25 +42,16 @@ export default {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader?cacheDirectory=true'
+                    // loader: 'babel-loader?cacheDirectory=true',
+                    loader: 'babel-loader',
                 }
             },
             {
                 test: /\.vue$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'vue',
-                }
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'eslint-loader',
-                    options: {
-                        fix: true,
-                        failOnError: true,
-                    }
+                    // loader: 'vue',
+                    loader: 'vue-loader',
                 }
             }
         ]
@@ -71,10 +62,13 @@ export default {
             "node_modules"
         ],
         alias: {
-            vue: 'vue/dist/vue.common.js'
+            'vue$': 'vue/dist/vue.esm.js'
         }
     },
     plugins: [
+        new VueLoaderPlugin({
+
+        }),
         new WebpackNotifierPlugin({
             title: "JavaScript Build",
             alwaysNotify: true
@@ -87,8 +81,9 @@ export default {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
+                // NODE_ENV: JSON.stringify('production')
+                NODE_ENV: '"production"'
             }
-        })
+        }),
     ]
 }
