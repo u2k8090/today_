@@ -8,7 +8,7 @@
       </div>
   </header>
   <div class="app-list">
-      <draggable class="app-list-inr"  element="ul" @start="drag=true" @end="drag=false" :options="{animation:100}">
+      <draggable class="app-list-inr"  element="ul" @start="drag=true" @end="drag=false" :options="{animation:100,delay: 10,handle:'.text'}">
           <transition-group name="fade">
               <todo-col
                 v-for="(todo, index) in orderbyTodos"
@@ -27,6 +27,7 @@
 
 <script>
 import draggable from 'vuedraggable';
+import TweenMax from 'gsap';
 
 const todoCol = {
   props: ['todo', 'index', 'edit', 'check'],
@@ -52,6 +53,7 @@ const todoCol = {
     ],
 		data() {
 			return {
+    placeholder:null,
     todayDate: null,
     inputVal: '',
     totalTodo: 0,
@@ -167,12 +169,12 @@ const todoCol = {
           });
           this.finTodo = fincount;
           this.totalTodo = this.todos.length;
-          document.getElementById(input).setAttribute('placeholder', placeholder[0]); // [this.totalTodo]
-          document.title = `(${this.finTodo}/${this.totalTodo}) this_`;
+          // document.getElementById(input).setAttribute('placeholder', placeholder[0]); // [this.totalTodo]
+          document.title = `(${this.finTodo}/${this.totalTodo}) today_`;
         } else {
           this.finTodo = fincount;
           this.totalTodo = this.todos.length;
-          document.getElementById(input).setAttribute('placeholder', placeholder[0]);
+          // document.getElementById(input).setAttribute('placeholder', placeholder[0]);
           document.title = 'today_';
         }
       },
